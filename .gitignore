@@ -6,10 +6,13 @@
 *.lai
 *.la
 *.a
+*.cmake
 
 .gradle
 out
 build
 build-gradle
 data
+CMakeFiles
+Makefile
 
