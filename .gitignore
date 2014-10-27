@@ -9,6 +9,7 @@
 *.cmake
 
 .gradle
+.idea
 out
 build
 build-gradle

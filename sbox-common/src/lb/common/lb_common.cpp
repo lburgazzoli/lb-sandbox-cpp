@@ -1,5 +1,5 @@
 
-#include "lb_common.hpp"
+#include "lb/common/lb_common.hpp"
 
 namespace lb {
 namespace common {
