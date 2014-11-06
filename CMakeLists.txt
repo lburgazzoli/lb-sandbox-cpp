@@ -1,15 +1,27 @@
 project (lb-sandbox-cpp)
 
-cmake_minimum_required (VERSION 2.8.12)
+cmake_minimum_required (VERSION 2.8 FATAL_ERROR)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+if(UNIX)
+    add_definitions(-DUNIX)
+
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fexceptions -pthread -g")
+    set(CMAKE_CXX_FLAGS_DEBUG "-O0")
+    set(CMAKE_CXX_FLAGS_RELEASE "-Os")
+endif()
+
+if(APPLE)
+    add_definitions(-DDARWIN)
+endif()
+
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
 find_package(Boost COMPONENTS system REQUIRED)
 find_package(Boost COMPONENTS date_time REQUIRED)
-
+find_package(Boost COMPONENTS filesystem REQUIRED)
+find_package(Boost COMPONENTS serialization REQUIRED)
 
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
