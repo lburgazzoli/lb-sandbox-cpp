@@ -20,16 +20,15 @@
 #define __LB_CHRONICLE_HPP__
 
 namespace lb {
-namespace common {
+namespace chronicle {
 
 class Chronicle
 {
 public:
-    Chronicle();
-    virtual ~Chronicle();
+    virtual void close() = 0;
 };
 
+} // namespace chronicle
 } // namespace lb
-} // namespace common
 
 #endif
