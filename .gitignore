@@ -6,7 +6,6 @@
 *.lai
 *.la
 *.a
-*.cmake
 
 .gradle
 .idea
@@ -16,4 +15,5 @@ build-gradle
 data
 CMakeFiles
 Makefile
+cmake_install.cmake
 
