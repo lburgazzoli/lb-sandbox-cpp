@@ -21,8 +21,22 @@ endif()
 
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_SOURCE_DIR}/cmake/Modules/)
 
+################################################################################
+# POCO
+################################################################################
 
 find_package(Poco)
+if(Poco_FOUND)
+    INCLUDE_DIRECTORIES(${Poco_INCLUDE_DIRS})
+    LINK_DIRECTORIES(${Poco_LIBRARY_DIRS})
+
+    MESSAGE(STATUS "Poco INCLUDE_DIRS: ${Poco_INCLUDE_DIRS}")
+    MESSAGE(STATUS "Poco LIBRARY_DIRS: ${Poco_LIBRARY_DIRS}")
+endif()
+
+################################################################################
+# BOOST
+################################################################################
 
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
@@ -39,6 +53,9 @@ if(Boost_FOUND)
     #target_link_libraries(foo ${Boost_LIBRARIES})
 endif()
 
+################################################################################
+# SUBPROJECTS
+################################################################################
 
 add_subdirectory (sbox-common)
 add_subdirectory (sbox-chronicle)

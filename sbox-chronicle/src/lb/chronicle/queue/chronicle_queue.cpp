@@ -16,22 +16,12 @@
  * limitations under the License.
  */
 
-#include "lb/chronicle/indexed_chronicle.hpp"
+#include "lb/chronicle/queue/chronicle_queue.hpp"
 
 namespace lb {
 namespace chronicle {
+namespace queue {
 
-IndexedChronicle::IndexedChronicle()
-{
-}
-
-IndexedChronicle::~IndexedChronicle()
-{
-}
-
-void IndexedChronicle::close()
-{
-}
-
+} // namespace queue
 } // namespace chronicle
 } // namespace lb

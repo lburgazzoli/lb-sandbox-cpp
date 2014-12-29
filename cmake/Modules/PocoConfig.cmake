@@ -53,25 +53,21 @@ ENDIF(POCO_DIR_SEARCH)
 
 # Add in some path suffixes. These will have to be updated whenever a new Poco version comes out.
 SET(SUFFIX_FOR_INCLUDE_PATH
-  poco-1.6.0/include
   include
 )
 
 SET(SUFFIX_FOR_LIBRARY_PATH
-  poco-1.6.0/lib
   lib
 )
 
 #
 # Look for an installation.
 #
-FIND_PATH(Poco_INCLUDE_DIR NAMES Foundation/include/Poco/AbstractCache.h PATH_SUFFIXES ${SUFFIX_FOR_INCLUDE_PATH} PATHS
-
-  # Look in other places.
-  ${POCO_DIR_SEARCH}
-
-  # Help the user find it if we cannot.
-  DOC "The ${POCO_INCLUDE_DIR_MESSAGE}"
+FIND_PATH(Poco_INCLUDE_DIR NAMES Poco/Poco.h PATH_SUFFIXES ${SUFFIX_FOR_INCLUDE_PATH} PATHS
+    # Look in other places.
+    ${POCO_DIR_SEARCH}
+    # Help the user find it if we cannot.
+    DOC "The ${POCO_INCLUDE_DIR_MESSAGE}"
 )
 
 # Assume we didn't find it.
@@ -82,16 +78,12 @@ IF(Poco_INCLUDE_DIR)
 
   IF(EXISTS "${Poco_INCLUDE_DIR}")
     SET(Poco_INCLUDE_DIRS
-      ${Poco_INCLUDE_DIR}/CppUnit/include
-      ${Poco_INCLUDE_DIR}/Foundation/include
-      ${Poco_INCLUDE_DIR}/Net/include
-      ${Poco_INCLUDE_DIR}/Util/include
-      ${Poco_INCLUDE_DIR}/XML/include
+      ${Poco_INCLUDE_DIR}
     )
     SET(Poco_FOUND 1)
   ENDIF(EXISTS "${Poco_INCLUDE_DIR}")
 
-  FIND_LIBRARY(Poco_LIBRARY_DIR NAMES PocoFoundation PocoFoundationd  PATH_SUFFIXES ${SUFFIX_FOR_LIBRARY_PATH} PATHS
+  FIND_LIBRARY(Poco_LIBRARY_DIR NAMES PocoFoundation PocoFoundationd PocoNet PocoNetd PocoUtil PocoUtild PATH_SUFFIXES ${SUFFIX_FOR_LIBRARY_PATH} PATHS
 
     # Look in other places.
     ${Poco_INCLUDE_DIR}
@@ -100,6 +92,7 @@ IF(Poco_INCLUDE_DIR)
     # Help the user find it if we cannot.
     DOC "The ${POCO_LIBRARY_PATH_DESCRIPTION}"
   )
+
   GET_FILENAME_COMPONENT(Poco_LIBRARY_DIR ${Poco_LIBRARY_DIR} PATH)
   IF(Poco_INCLUDE_DIR)
     SET(Poco_LIBRARY_DIRS ${Poco_LIBRARY_DIR})

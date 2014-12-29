@@ -29,6 +29,6 @@ Common::~Common()
 {
 }
 
-} // namespace lb
 } // namespace common
+} // namespace lb
 

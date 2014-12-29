@@ -16,10 +16,21 @@
  * limitations under the License.
  */
 
-#include "lb/chronicle/chronicle.hpp"
+#ifndef INCLUDED_LB_COMMON_HPP__
+#define INCLUDED_LB_COMMON_HPP__
 
 namespace lb {
-namespace chronicle {
+namespace common {
 
-} // namespace chronicle
+class Common
+{
+public:
+    Common();
+    virtual ~Common();
+};
+
+} // namespace common
 } // namespace lb
+
+#endif // INCLUDED_LB_COMMON_HPP__
+

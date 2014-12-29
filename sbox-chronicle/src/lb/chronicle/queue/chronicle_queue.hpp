@@ -16,21 +16,21 @@
  * limitations under the License.
  */
 
-#ifndef __LB_COMMON_HPP__
-#define __LB_COMMON_HPP__
+#ifndef INCLUDED_LB_CHRONICLE_QUEUE_HPP__
+#define INCLUDED_LB_CHRONICLE_QUEUE_HPP__
 
 namespace lb {
-namespace common {
+namespace chronicle {
+namespace queue {
 
-class Common
+class ChronicleQueue
 {
 public:
-    Common();
-    virtual ~Common();
+    virtual void close() = 0;
 };
 
+} // namespace queue
+} // namespace chronicle
 } // namespace lb
-} // namespace common
 
-#endif
-
+#endif // INCLUDED_LB_CHRONICLE_QUEUE_HPP__

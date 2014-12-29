@@ -16,19 +16,27 @@
  * limitations under the License.
  */
 
-#ifndef __LB_CHRONICLE_HPP__
-#define __LB_CHRONICLE_HPP__
+#ifndef INCLUDED_LB_INDEXED_CHRONICLE_QUEUE_HPP__
+#define INCLUDED_LB_INDEXED_CHRONICLE_QUEUE_HPP__
+
+#include "lb/chronicle/queue/chronicle_queue.hpp"
 
 namespace lb {
 namespace chronicle {
+namespace queue {
 
-class Chronicle
+class IndexedChronicleQueue
+    : public ChronicleQueue
 {
 public:
-    virtual void close() = 0;
+    IndexedChronicleQueue();
+    virtual ~IndexedChronicleQueue();
+
+    virtual void close();
 };
 
+} // namespace queue
 } // namespace chronicle
 } // namespace lb
 
-#endif
+#endif // INCLUDED_LB_INDEXED_CHRONICLE_QUEUE_HPP__

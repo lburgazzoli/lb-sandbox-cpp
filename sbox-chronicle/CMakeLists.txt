@@ -1,9 +1,9 @@
 project(sbox-chronicle)
 
-INCLUDE_DIRECTORIES(include)
+INCLUDE_DIRECTORIES(src)
 ADD_LIBRARY(
   sbox-chronicle
-  src/lb/chronicle/chronicle.cpp
-  src/lb/chronicle/indexed_chronicle.cpp
+  src/lb/chronicle/queue/chronicle_queue.cpp
+  src/lb/chronicle/queue/indexed_chronicle_queue.cpp
 )
 
