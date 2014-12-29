@@ -38,8 +38,4 @@ public:
 } // namespace chronicle
 } // namespace lb
 
-#ifdef OS_LINUX
-#include "lb/chronicle/affinity_linux.hpp"
-#endif
-
 #endif // INCLUDED_LB_CHRONICLE_AFFINITY_HPP__

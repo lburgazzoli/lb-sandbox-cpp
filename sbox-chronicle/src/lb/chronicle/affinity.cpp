@@ -21,5 +21,51 @@
 namespace lb {
 namespace chronicle {
 
+// *****************************************************************************
+// LINUX
+// *****************************************************************************
+
+#ifdef OS_LINUX
+
+#include <sched.h>
+#include <unistd.h>
+#include <signal.h>
+#include <sys/syscall.h>
+#include <sys/types.h>
+
+std::int32_t Affinity::getCpu()
+{
+    return sched_getcpu();
+}
+
+std::int32_t Affinity::getProcessId()
+{
+    return getpid();
+}
+
+std::int32_t Affinity::getThreadId()
+{
+    return syscall(SYS_gettid);
+}
+
+std::int64_t Affinity::getAffinity()
+{
+    cpu_set_t mask;
+    CPU_ZERO(&mask);
+
+    return sched_getaffinity(0, sizeof(cpu_set_t), &mask);
+}
+
+void Affinity::setAffinity(std::int64_t affinity)
+{
+    cpu_set_t mask;
+    CPU_ZERO(&mask);
+    CPU_SET(affinity, &mask);
+
+    sched_setaffinity(0, sizeof(cpu_set_t), &mask);
+}
+
+#endif // OS_LINUX
+
 } // namespace chronicle
 } // namespace lb
