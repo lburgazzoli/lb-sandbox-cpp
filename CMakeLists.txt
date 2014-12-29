@@ -4,7 +4,7 @@ cmake_minimum_required (VERSION 2.8 FATAL_ERROR)
 
 
 if(UNIX)
-    add_definitions(-DUNIX)
+    add_definitions(-DOS_UNIX)
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fexceptions -pthread -g")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0")
@@ -12,11 +12,16 @@ if(UNIX)
 endif()
 
 if(APPLE)
-    add_definitions(-DDARWIN)
+    add_definitions(-DOS_DARWIN)
 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fexceptions -pthread -g")
     set(CMAKE_CXX_FLAGS_DEBUG "-O0")
     set(CMAKE_CXX_FLAGS_RELEASE "-Os")
+endif()
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    add_definitions(-DOS_LINUX)
+    add_definitions(-D_GNU_SOURCE)
 endif()
 
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_SOURCE_DIR}/cmake/Modules/)
