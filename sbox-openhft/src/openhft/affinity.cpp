@@ -16,9 +16,23 @@
  * limitations under the License.
  */
 
+#include <cerrno>
+#include <cstring>
+
 #include "openhft/affinity.hpp"
+#include "openhft/exceptions.hpp"
 
 namespace openhft {
+
+// *****************************************************************************
+//
+// *****************************************************************************
+
+Affinity& Affinity::get()
+{
+    static Affinity instance;
+    return instance;
+}
 
 // *****************************************************************************
 // LINUX
@@ -34,7 +48,13 @@ namespace openhft {
 
 std::int32_t Affinity::getCpu()
 {
-    return sched_getcpu();
+    std::int32_t rv = sched_getcpu();
+    if(rv == -1)
+    {
+        throw IllegalStateException(std::strerror(errno));        
+    }
+
+    return rv;
 }
 
 std::int32_t Affinity::getProcessId()
@@ -44,7 +64,13 @@ std::int32_t Affinity::getProcessId()
 
 std::int32_t Affinity::getThreadId()
 {
-    return syscall(SYS_gettid);
+    std::int32_t rv = syscall(SYS_gettid);
+    if(rv == -1)
+    {
+        throw IllegalStateException(std::strerror(errno));        
+    }
+
+    return rv;
 }
 
 std::int64_t Affinity::getAffinity()
@@ -52,7 +78,13 @@ std::int64_t Affinity::getAffinity()
     cpu_set_t mask;
     CPU_ZERO(&mask);
 
-    return sched_getaffinity(0, sizeof(cpu_set_t), &mask);
+    std::int32_t rv = sched_getaffinity(0, sizeof(cpu_set_t), &mask);
+    if(rv == -1)
+    {
+        throw IllegalStateException(std::strerror(errno));        
+    }
+
+    return rv;
 }
 
 void Affinity::setAffinity(std::int64_t affinity)
@@ -61,7 +93,11 @@ void Affinity::setAffinity(std::int64_t affinity)
     CPU_ZERO(&mask);
     CPU_SET(affinity, &mask);
 
-    sched_setaffinity(0, sizeof(cpu_set_t), &mask);
+    std::int32_t rv = sched_setaffinity(0, sizeof(cpu_set_t), &mask);
+    if(rv == -1)
+    {
+        throw IllegalStateException(std::strerror(errno));        
+    }
 }
 
 #endif // OS_LINUX

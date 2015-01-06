@@ -20,7 +20,7 @@
 #define INCLUDED_OPENHFT_AFFINITY_HPP__
 
 #include <cstdint>
-
+ 
 namespace openhft {
 
 class Affinity
@@ -32,6 +32,8 @@ public:
     std::int32_t getCpu();
     std::int32_t getProcessId();
     std::int32_t getThreadId();
+
+    static Affinity& get();
 };
 
 } // namespace openhft

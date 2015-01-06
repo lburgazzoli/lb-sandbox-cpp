@@ -24,7 +24,10 @@
 
 namespace openhft {
 
-#   ifdef OS_UNIX
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+
+#ifdef OS_UNIX
     #define OPENHFT_SOURCEINFO __PRETTY_FUNCTION__, " : " __FILE__ " : " TOSTRING(__LINE__)
     #define OPENHFT_NOEXCEPT   noexcept
 #endif
@@ -75,6 +78,16 @@ public:
             const std::string& function, \
             const std::string& where) \
             : SourcedException (what, function, where) \
+            { \
+            } \
+        exceptionName ( \
+            const std::string &what) \
+            : SourcedException (what, __PRETTY_FUNCTION__, " : " __FILE__ " : " TOSTRING(__LINE__) ) \
+            { \
+            } \
+        exceptionName ( \
+            const char *what) \
+            : SourcedException (std::string(what), __PRETTY_FUNCTION__, " : " __FILE__ " : " TOSTRING(__LINE__) ) \
             { \
             } \
     }

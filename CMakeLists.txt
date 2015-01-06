@@ -25,6 +25,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif()
 
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_SOURCE_DIR}/cmake/Modules/)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake-build/binaries")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake-build/lib")
 
 ################################################################################
 # POCO
@@ -62,5 +64,12 @@ endif()
 # SUBPROJECTS
 ################################################################################
 
+set(COMMON_PATH  "${CMAKE_SOURCE_DIR}/sbox-common" )
+set(OPENHFT_PATH "${CMAKE_SOURCE_DIR}/sbox-openhft")
+
+include_directories(${COMMON_PATH}/src)
+include_directories(${OPENHFT_PATH}/src)
+
 add_subdirectory (sbox-common)
 add_subdirectory (sbox-openhft)
+add_subdirectory (sbox-openhft-examples)
