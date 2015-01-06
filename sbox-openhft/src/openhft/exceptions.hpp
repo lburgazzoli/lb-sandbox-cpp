@@ -16,18 +16,17 @@
  * limitations under the License.
  */
 
-#ifndef INCLUDED_LB_CHRONICLE_EXCEPTIONS_HPP__
-#define INCLUDED_LB_CHRONICLE_EXCEPTIONS_HPP__
+#ifndef INCLUDED_OPENHFT_EXCEPTIONS_HPP__
+#define INCLUDED_OPENHFT_EXCEPTIONS_HPP__
 
 #include <string>
 #include <stdexcept>
 
-namespace lb {
-namespace chronicle {
+namespace openhft {
 
 #   ifdef OS_UNIX
-    #define CHRONICLE_SOURCEINFO __PRETTY_FUNCTION__, " : " __FILE__ " : " TOSTRING(__LINE__)
-    #define CHRONICLE_NOEXCEPT   noexcept
+    #define OPENHFT_SOURCEINFO __PRETTY_FUNCTION__, " : " __FILE__ " : " TOSTRING(__LINE__)
+    #define OPENHFT_NOEXCEPT   noexcept
 #endif
 
 // *****************************************************************************
@@ -51,12 +50,12 @@ public:
     {
     }
 
-    virtual const char *what() const CHRONICLE_NOEXCEPT
+    virtual const char *what() const OPENHFT_NOEXCEPT
     {
         return m_what.c_str();
     }
 
-    const char *where() const CHRONICLE_NOEXCEPT
+    const char *where() const OPENHFT_NOEXCEPT
     {
         return m_where.c_str();
     }
@@ -92,7 +91,6 @@ DECLARE_SOURCED_EXCEPTION (ElementNotFound);
 DECLARE_SOURCED_EXCEPTION (IllegalArgumentException);
 DECLARE_SOURCED_EXCEPTION (IllegalStateException);
 
-} // namespace chronicle
-} // namespace lb
+} // namespace openhft
 
-#endif // INCLUDED_LB_CHRONICLE_EXCEPTIONS_HPP__
+#endif // INCLUDED_OPENHFT_EXCEPTIONS_HPP__

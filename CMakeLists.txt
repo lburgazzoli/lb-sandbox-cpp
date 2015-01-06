@@ -63,4 +63,4 @@ endif()
 ################################################################################
 
 add_subdirectory (sbox-common)
-add_subdirectory (sbox-chronicle)
+add_subdirectory (sbox-openhft)

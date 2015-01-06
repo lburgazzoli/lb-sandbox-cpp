@@ -16,26 +16,7 @@
  * limitations under the License.
  */
 
-#ifndef INCLUDED_LB_CHRONICLE_AFFINITY_HPP__
-#define INCLUDED_LB_CHRONICLE_AFFINITY_HPP__
+#include "openhft/exceptions.hpp"
 
-#include <cstdint>
-
-namespace lb {
-namespace chronicle {
-
-class Affinity
-{
-public:
-    std::int64_t getAffinity();
-    void setAffinity(std::int64_t affinity);
-
-    std::int32_t getCpu();
-    std::int32_t getProcessId();
-    std::int32_t getThreadId();
-};
-
-} // namespace chronicle
-} // namespace lb
-
-#endif // INCLUDED_LB_CHRONICLE_AFFINITY_HPP__
+namespace openhft {
+} // namespace openhft

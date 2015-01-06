@@ -16,10 +16,9 @@
  * limitations under the License.
  */
 
-#include "lb/chronicle/affinity.hpp"
+#include "openhft/affinity.hpp"
 
-namespace lb {
-namespace chronicle {
+namespace openhft {
 
 // *****************************************************************************
 // LINUX
@@ -67,5 +66,4 @@ void Affinity::setAffinity(std::int64_t affinity)
 
 #endif // OS_LINUX
 
-} // namespace chronicle
-} // namespace lb
+} // namespace openhft

@@ -16,27 +16,24 @@
  * limitations under the License.
  */
 
-#ifndef INCLUDED_LB_INDEXED_CHRONICLE_QUEUE_HPP__
-#define INCLUDED_LB_INDEXED_CHRONICLE_QUEUE_HPP__
+#ifndef INCLUDED_OPENHFT_AFFINITY_HPP__
+#define INCLUDED_OPENHFT_AFFINITY_HPP__
 
-#include "lb/chronicle/queue/chronicle_queue.hpp"
+#include <cstdint>
 
-namespace lb {
-namespace chronicle {
-namespace queue {
+namespace openhft {
 
-class IndexedChronicleQueue
-    : public ChronicleQueue
+class Affinity
 {
 public:
-    IndexedChronicleQueue();
-    virtual ~IndexedChronicleQueue();
+    std::int64_t getAffinity();
+    void setAffinity(std::int64_t affinity);
 
-    virtual void close();
+    std::int32_t getCpu();
+    std::int32_t getProcessId();
+    std::int32_t getThreadId();
 };
 
-} // namespace queue
-} // namespace chronicle
-} // namespace lb
+} // namespace openhft
 
-#endif // INCLUDED_LB_INDEXED_CHRONICLE_QUEUE_HPP__
+#endif // INCLUDED_OPENHFT_AFFINITY_HPP__
